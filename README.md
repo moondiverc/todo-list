@@ -1,6 +1,5 @@
-# Todo List
-
-A React + TypeScript + Vite todo application.
+<<<<<<< HEAD
+# React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -69,3 +68,6 @@ export default tseslint.config([
   },
 ])
 ```
+=======
+# todo-list
+>>>>>>> 05f571dfae959a96a24041373397265795761187
