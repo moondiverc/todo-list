@@ -1,31 +1,16 @@
-import { useState } from "react";
 import AddTodoForm from "./components/AddTodoForm"
-import { dummyData } from "./data/todos"
 import TodoList from "./components/TodoList";
+import TodoSummary from "./components/TodoSummary";
+import useTodos from "./hooks/useTodos";
 
 function App() {
-  const [todos, setTodos] = useState(dummyData);
-
-  function setTodoCompleted(id: number, completed: boolean) {
-    setTodos((prevTodos) => 
-      // map generate completely new array, harus pake setTodos karna kalo gapake dia cuma modify arraynya aja dan dia pake referensi sebelumnya
-      prevTodos.map((todo => (todo.id === id ? {...todo, completed} : todo))));
-  }
-
-  function addTodo(title: string) {
-    setTodos(prevTodos => [
-      {
-        id: prevTodos.length + 1,
-        title,
-        completed: false
-      },
-      ...prevTodos
-    ])
-  }
-
-  function deleteTodo(id: number) {
-    setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id))
-  }
+  const {
+    todos,
+    addTodo,
+    setTodoCompleted,
+    deleteTodo,
+    deleteAllCompletedTodos
+  } = useTodos();
 
   return (
     <main className='py-10 h-screen space-y-5 overflow-y-auto'>
@@ -34,6 +19,7 @@ function App() {
         <AddTodoForm onSubmit={addTodo}/>
         <TodoList todos={todos} onCompletedChange={setTodoCompleted} onDelete={deleteTodo}/>
       </div>
+      <TodoSummary todos={todos} deleteAllCompleted={deleteAllCompletedTodos}/>
     </main>
   )
 }

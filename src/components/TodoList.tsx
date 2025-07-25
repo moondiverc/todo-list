@@ -8,6 +8,7 @@ interface TodoListProps {
 }
 
 export default function TodoList({todos, onCompletedChange, onDelete}: TodoListProps){
+    // algoritma buat sorting
     const todosSorted = todos.sort((a, b) => {
         if (a.completed === b.completed) {
             return b.id - a.id;
@@ -16,6 +17,7 @@ export default function TodoList({todos, onCompletedChange, onDelete}: TodoListP
     })
     
     return (
+        // buat ngerender list todo
         <>
         <div className="space-y-2">
             {todosSorted.map(todo => (
